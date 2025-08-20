@@ -53,6 +53,7 @@ public class ProductController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Product> update(@PathVariable Long id, @RequestBody Product product) {
+        product.setId(id);
         return ResponseEntity.status(HttpStatus.CREATED).body(productService.save(product));
     }
 
