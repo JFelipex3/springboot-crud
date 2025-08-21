@@ -1,15 +1,17 @@
 package com.jmachuca.curso.springboot.app.springboot_crud.entities;
 
+import com.jmachuca.curso.springboot.app.springboot_crud.validation.IsRequired;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+// import jakarta.validation.constraints.Min;
+// import jakarta.validation.constraints.NotBlank;
+// import jakarta.validation.constraints.NotEmpty;
+// import jakarta.validation.constraints.NotNull;
+// import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "products")
@@ -21,6 +23,7 @@ public class Product {
 
     //@NotEmpty(message = "{NotEmpty.product.name}") // No acepta null pero si espacios en blanco
     //@Size(min = 3, max = 45, message = "{Size.product.name}")
+    @IsRequired(message = "{IsRequired.product.name}") // Usando validación personalizada
     private String name;
 
     //@NotNull(message = "{NotNull.product.price}")
@@ -28,6 +31,7 @@ public class Product {
     private Integer price;
 
     //@NotBlank(message = "{NotBlank.product.description}") // No acepta null ni espacios en blanco
+    @IsRequired
     private String description;
     
     public Long getId() {

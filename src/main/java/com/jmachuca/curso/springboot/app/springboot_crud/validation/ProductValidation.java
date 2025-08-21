@@ -1,4 +1,4 @@
-package com.jmachuca.curso.springboot.app.springboot_crud;
+package com.jmachuca.curso.springboot.app.springboot_crud.validation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
