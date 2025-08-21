@@ -19,15 +19,15 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty // No acepta null pero si espacios en blanco
-    @Size(min = 3, max = 45)
+    @NotEmpty(message = "{NotEmpty.product.name}") // No acepta null pero si espacios en blanco
+    @Size(min = 3, max = 45, message = "{Size.product.name}")
     private String name;
 
-    @NotNull
-    @Min(500)
+    @NotNull(message = "{NotNull.product.price}")
+    @Min(value = 500, message = "{Min.product.price}")
     private Integer price;
 
-    @NotBlank // No acepta null ni espacios en blanco
+    @NotBlank(message = "{NotBlank.product.description}") // No acepta null ni espacios en blanco
     private String description;
     
     public Long getId() {
