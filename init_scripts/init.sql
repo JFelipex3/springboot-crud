@@ -5,10 +5,7 @@ CREATE TABLE products (
 	description TEXT NOT NULL,
 	sku varchar(45),
 	CONSTRAINT products_pk PRIMARY KEY (id)
-)
-ENGINE=InnoDB
-DEFAULT CHARSET=utf8mb4
-COLLATE=utf8mb4_0900_ai_ci;
+);
 
 -- Datos Iniciales
 INSERT INTO products (name, price, description, sku) VALUES ('Laptop Gamer', 1200000, 'Laptop de alto rendimiento con tarjeta grafica dedicada y 16GB RAM', 2345);
@@ -21,3 +18,31 @@ INSERT INTO products (name, price, description, sku) VALUES ('Impresora Multifun
 INSERT INTO products (name, price, description, sku) VALUES ('Disco SSD 1TB', 120000, 'Unidad de estado solido NVMe de 1TB para maxima velocidad', 5123);
 INSERT INTO products (name, price, description, sku) VALUES ('Silla Gamer', 180000, 'Silla ergonomica con soporte lumbar y reclinacion ajustable', 6789);
 INSERT INTO products (name, price, description, sku) VALUES ('Camara Web HD', 60000, 'Camara web 1080p con microfono integrado, ideal para videollamadas', 7321);
+
+CREATE TABLE users (
+	id INT auto_increment NOT NULL,
+	username varchar(18) NOT NULL,
+	password varchar(60) NOT NULL,
+	enabled boolean NOT NULL DEFAULT true,
+	CONSTRAINT user_pk PRIMARY KEY (id),
+	UNIQUE KEY unique_username (username)
+);
+
+CREATE TABLE roles (
+	id INT auto_increment NOT NULL,
+	name varchar(45) NOT NULL,
+	CONSTRAINT roles_pk PRIMARY KEY (id),
+	UNIQUE KEY unique_name (name)
+);
+
+CREATE TABLE users_roles (
+	user_id INT NOT NULL,
+	role_id INT NOT NULL,
+	CONSTRAINT users_roles_pk PRIMARY KEY (user_id, role_id),
+	CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id),
+	CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES roles(id)
+);
+
+-- Datos Iniciales
+INSERT INTO roles (name) VALUES ('ROLE_ADMIN');
+INSERT INTO roles (name) VALUES ('ROLE_USER');
