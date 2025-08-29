@@ -19,7 +19,7 @@ import com.jmachuca.curso.springboot.app.springboot_crud.services.UserService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UserController {
 
     private UserService userService;
