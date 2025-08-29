@@ -1,5 +1,6 @@
 package com.jmachuca.curso.springboot.app.springboot_crud.entities;
 
+import com.jmachuca.curso.springboot.app.springboot_crud.validation.IsExistsDb;
 import com.jmachuca.curso.springboot.app.springboot_crud.validation.IsRequired;
 
 import jakarta.persistence.Entity;
@@ -33,6 +34,10 @@ public class Product {
     //@NotBlank(message = "{NotBlank.product.description}") // No acepta null ni espacios en blanco
     @IsRequired
     private String description;
+
+    @IsRequired
+    @IsExistsDb
+    private String sku;
     
     public Long getId() {
         return id;
@@ -64,6 +69,14 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getSku() {
+        return sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
     }
 
 }
