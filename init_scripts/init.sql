@@ -1,17 +1,10 @@
 CREATE TABLE products (
 	id BIGINT auto_increment NOT NULL,
-	name varchar(45) NULL,
-	price INT NULL,
-	description TEXT NULL,
+	name varchar(45) NOT NULL,
+	price INT NOT NULL,
+	description TEXT NOT NULL,
 	CONSTRAINT products_pk PRIMARY KEY (id)
-)
-ENGINE=InnoDB
-DEFAULT CHARSET=utf8mb4
-COLLATE=utf8mb4_0900_ai_ci;
-
-ALTER TABLE products MODIFY COLUMN name varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL;
-ALTER TABLE products MODIFY COLUMN price int NOT NULL;
-ALTER TABLE products MODIFY COLUMN description text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL;
+);
 
 -- Datos Iniciales
 INSERT INTO products (name, price, description) VALUES ('Laptop Gamer', 1200000, 'Laptop de alto rendimiento con tarjeta gráfica dedicada y 16GB RAM');
@@ -30,20 +23,16 @@ CREATE TABLE users (
 	username varchar(18) NOT NULL,
 	password varchar(60) NOT NULL,
 	enabled boolean NOT NULL DEFAULT true,
-	CONSTRAINT user_pk PRIMARY KEY (id)
-)
-ENGINE=InnoDB
-DEFAULT CHARSET=utf8mb4
-COLLATE=utf8mb4_0900_ai_ci;
+	CONSTRAINT user_pk PRIMARY KEY (id),
+	UNIQUE KEY unique_username (username)
+);
 
 CREATE TABLE roles (
 	id INT auto_increment NOT NULL,
 	name varchar(45) NOT NULL,
-	CONSTRAINT roles_pk PRIMARY KEY (id)
-)
-ENGINE=InnoDB
-DEFAULT CHARSET=utf8mb4
-COLLATE=utf8mb4_0900_ai_ci;
+	CONSTRAINT roles_pk PRIMARY KEY (id),
+	UNIQUE KEY unique_name (name)
+);
 
 CREATE TABLE users_roles (
 	user_id INT NOT NULL,
@@ -51,10 +40,7 @@ CREATE TABLE users_roles (
 	CONSTRAINT users_roles_pk PRIMARY KEY (user_id, role_id),
 	CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id),
 	CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES roles(id)
-)
-ENGINE=InnoDB
-DEFAULT CHARSET=utf8mb4
-COLLATE=utf8mb4_0900_ai_ci;
+);
 
 -- Datos Iniciales
 INSERT INTO roles (name) VALUES ('ROLE_ADMIN');
