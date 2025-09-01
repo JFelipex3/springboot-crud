@@ -16,6 +16,7 @@ public class AppConstants {
     public static final String TOKEN = "token";
     public static final String USERNAME = "username";
     public static final String MESSAGE = "message";
+    public static final String ERROR = "error";
     
     public enum ContentType {
         JSON("application/json"),
