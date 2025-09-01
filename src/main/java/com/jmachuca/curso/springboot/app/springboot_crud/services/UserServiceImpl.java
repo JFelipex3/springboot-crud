@@ -13,6 +13,8 @@ import com.jmachuca.curso.springboot.app.springboot_crud.entities.User;
 import com.jmachuca.curso.springboot.app.springboot_crud.repositories.RoleRepository;
 import com.jmachuca.curso.springboot.app.springboot_crud.repositories.UserRepository;
 
+import static com.jmachuca.curso.springboot.app.springboot_crud.utils.AppConstants.*;
+
 @Service
 public class UserServiceImpl implements UserService{
 
@@ -36,13 +38,13 @@ public class UserServiceImpl implements UserService{
     @Transactional
     public User save(User user) {
 
-        Optional<Role> optionalRoleUser = roleRepository.findByName("ROLE_USER");
+        Optional<Role> optionalRoleUser = roleRepository.findByName(ROLE_USER);
         List<Role> roles = new ArrayList<>();
 
         optionalRoleUser.ifPresent(roles::add);
 
         if (user.isAdmin()) {
-            Optional<Role> optionalRoleAdmin = roleRepository.findByName("ROLE_ADMIN");
+            Optional<Role> optionalRoleAdmin = roleRepository.findByName(ROLE_ADMIN);
             optionalRoleAdmin.ifPresent(roles::add);
         }
 
