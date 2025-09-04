@@ -13,6 +13,7 @@ public class IsExistsDbValidation implements ConstraintValidator<IsExistsDb, Str
 
     @Autowired
     private ProductService productService;
+    // No usar inyección por constructor en validadores personalizados
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {

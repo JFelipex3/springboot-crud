@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 // import jakarta.validation.constraints.Min;
 // import jakarta.validation.constraints.NotBlank;
 // import jakarta.validation.constraints.NotEmpty;
-// import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 // import jakarta.validation.constraints.Size;
 
 @Entity
@@ -27,7 +27,7 @@ public class Product {
     @IsRequired(message = "{IsRequired.product.name}") // Usando validación personalizada
     private String name;
 
-    //@NotNull(message = "{NotNull.product.price}")
+    @NotNull(message = "{NotNull.product.price}")
     //@Min(value = 500, message = "{Min.product.price}")
     private Integer price;
 
